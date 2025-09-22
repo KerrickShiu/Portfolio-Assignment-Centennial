@@ -1,42 +1,36 @@
-import { useForm } from "react-hook-form";
+import { useState } from "react";
 import "./example.css";
 
-function LoginForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export default function StarRating({ totalStars = 5 }) {
+  const [selectedStars, setSelectedStars] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(true);
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="hook">
-      <label className="hook__text">Email</label>
-      <input
-        type="email"
-        className="hook__input"
-        {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-      />
-      {errors.email && (
-        <p className="hook__error">Email is required and must be valid</p>
-      )}
-
-      <label className="hook__text">Password</label>
-      <input
-        type="password"
-        className="hook__input"
-        {...register("password", { required: true })}
-      />
-      {errors.password && <p className="hook__error">Password is required</p>}
-
-      <button className="hook__button" type="submit">
-        Submit
-      </button>
+    <form onSubmit={handleSubmit}>
+      <h2>Rate my Website:</h2>
+      {[...Array(totalStars)].map((_, i) => (
+        <span
+          key={i}
+          style={{
+            cursor: "pointer",
+            color: i < selectedStars ? "gold" : "gray",
+            fontSize: "2rem",
+          }}
+          onClick={() => setSelectedStars(i + 1)}
+          onMouseOver={() => setSelectedStars(i + 1)}
+          onMouseOut={() => setSelectedStars(selectedStars)}
+        >
+          ★
+        </span>
+      ))}
+      <p>{selectedStars} of {totalStars} stars</p>
+      <button type="submit">Submit</button>
+      {submitted && <p>submitted!</p>}
     </form>
   );
 }
-
-export default LoginForm
