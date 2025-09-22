@@ -1,8 +1,11 @@
 export default function Services() {
 return (
 <div>
-<li>Sir John A. Macdonald CI OSSD 2022</li>
-<li>Centennial College Health Informatics Technology Advanced Diploma 2025-Present</li>
+<li>Data Analysis and Visualization</li>
+<li>Coding in various Languages such as C# and Javascript</li>
+<li>Web Development using VITE and REACT through the MERN Methodology</li>
+<li>Database Management using SQL and MongoDB</li>
+<li>Health Technology Related Inquiries</li>
 </div>
 );
 }
