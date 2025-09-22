@@ -1,7 +1,7 @@
 export default function About() {
 return (
 <div>
-<p>About</p>
+<p>Hello, my name is Kerrick Shiu.</p>
 </div>
 );
 }
